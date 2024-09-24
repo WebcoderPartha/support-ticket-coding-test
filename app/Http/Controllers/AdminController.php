@@ -11,7 +11,11 @@ class AdminController extends Controller
         return $this->middleware('admin.auth')->except('admin_login', 'admin_login_attempt');
     }
     public function admin_login(){
-        return view('admin.login');
+        if (!Auth::guard('admin')->check()){
+            return view('admin.login');
+        }else {
+            return redirect()->route('admin.dashboard');
+        }
     }
 
     public function admin_login_attempt(Request $request){
