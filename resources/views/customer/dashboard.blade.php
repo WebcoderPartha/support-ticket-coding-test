@@ -5,32 +5,37 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">ID</th>
+                <th scope="col">Open Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($tickets as $ticket)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{ $ticket->id }}</th>
+                <td>{{ date('d F, Y', strtotime($ticket->open_date)) }}</td>
+                <td>{{!empty($ticket->end_date) ? date('d F, Y', strtotime($ticket->open_date)) : '-' }}</td>
+                <td>{{ $ticket->subject }}</td>
+                <td>
+                    @if($ticket->status === 1)
+                        <span class="badge text-bg-primary">Opened</span>
+                    @else
+                        <span class="badge text-bg-danger">Closed</span>
+                    @endif
+                </td>
+                <td>
+                    <a class="badge text-bg-info text-white" href="">
+                        View
+                    </a>
+                </td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
+        {{ $tickets->links() }}
     </div>
 @endsection

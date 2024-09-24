@@ -42,7 +42,8 @@ class CustomerController extends Controller
     }
 
     public function customer_dashboard(){
-        return view('customer.dashboard');
+        $tickets = Ticket::orderBy('id', 'DESC')->take(10)->paginate();
+        return view('customer.dashboard', compact('tickets'));
     }
 
     public function create_ticket(){
@@ -78,6 +79,6 @@ class CustomerController extends Controller
 
     }
 
-    
+
 
 }
