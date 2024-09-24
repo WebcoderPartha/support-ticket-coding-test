@@ -28,7 +28,7 @@
                     @endif
                 </td>
                 <td>
-                    <a class="badge text-bg-info text-white" href="">
+                    <a class="badge text-bg-info text-white" href="{{ route('customer.ticket.view', $ticket->id) }}">
                         View
                     </a>
                 </td>

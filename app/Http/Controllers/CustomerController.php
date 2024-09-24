@@ -79,6 +79,16 @@ class CustomerController extends Controller
 
     }
 
+    public function customer_ticket_view($ticket_id){
+        $ticket = Ticket::where('id', $ticket_id)->first();
+        $ticket_details = TicketDetail::with('admin', 'customer')->where('ticket_id', $ticket->id)->orderBy('id', 'asc')->get();
+
+        return view('customer.ticket_view', compact('ticket', 'ticket_details'));
+
+    }
+
+    
+
 
 
 }
