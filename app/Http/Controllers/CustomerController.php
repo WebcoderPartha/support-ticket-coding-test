@@ -7,9 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
+    public function __construct(){
+        return $this->middleware('customer.auth')->except('customer_login', 'customer_login_attempt');
+    }
 
     public function customer_login(){
-        return view('customer.login');
+        if (!Auth::guard('customer')->check()){
+            return view('customer.login');
+        }else{
+            return redirect()->route('customer.dashboard');
+        }
     }
 
     public function customer_login_attempt(Request $request){
@@ -34,6 +41,10 @@ class CustomerController extends Controller
 
     public function customer_dashboard(){
         return view('customer.dashboard');
+    }
+
+    public function create_ticket(){
+        return view('customer.create_ticket');
     }
 
 }
