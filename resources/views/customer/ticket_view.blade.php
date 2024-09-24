@@ -1,9 +1,9 @@
 @extends('customer.layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Ticket View')
 @section('content')
     <div style="width: 600px">
         <h2 class="h5 py-2">Subject: <b><i>{{ $ticket->subject }}</i></b></h2>
-        <form action="{{ route('customer.open_ticket') }}" method="POST">
+        <form action="{{ route('customer.ticket.reply', $ticket->id) }}" method="POST">
             @csrf @method('POST')
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
@@ -36,7 +36,7 @@
             <div class="mb-3">
                 <label for="message" class="form-label">Reply</label>
                 <textarea name="message" id="message" class="form-control" cols="30" placeholder="Type here.." rows="4"></textarea>
-                @error('subject')
+                @error('message')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>

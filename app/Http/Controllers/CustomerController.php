@@ -84,10 +84,29 @@ class CustomerController extends Controller
         $ticket_details = TicketDetail::with('admin', 'customer')->where('ticket_id', $ticket->id)->orderBy('id', 'asc')->get();
 
         return view('customer.ticket_view', compact('ticket', 'ticket_details'));
+    }
+
+    public function customer_reply_ticket(Request $request, $ticket_id){
+        $validate = $request->validate([
+            'message' => 'required'
+        ],[
+            'message.required' => 'Message is required!'
+        ]);
+
+        $ticket = Ticket::where('id', $ticket_id)->first();
+        if ($ticket){
+            $ticket_detail = new TicketDetail();
+            $ticket_detail->ticket_id = $ticket->id;
+            $ticket_detail->message = $request->message;
+            $ticket_detail->customer_id = Auth::guard('customer')->user()->id;
+            $ticket_detail->save();
+        }
+
+        return redirect()->back();
 
     }
 
-    
+
 
 
 

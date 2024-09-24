@@ -16,6 +16,7 @@ Route::controller(CustomerController::class)->group(function (){
    Route::get('/ticket/create/', 'create_ticket')->name('customer.create_ticket');
    Route::post('/ticket/store', 'open_ticket')->name('customer.open_ticket');
    Route::get('/ticket/{ticket_id}/view', 'customer_ticket_view')->name('customer.ticket.view');
+   Route::post('/ticket/{ticket_id}/reply', 'customer_reply_ticket')->name('customer.ticket.reply');
 });
 
 

@@ -1,5 +1,5 @@
 @extends('customer.layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Open a Ticket')
 @section('content')
     <div style="width: 600px">
         <h2>Open a Ticket</h2>
@@ -30,7 +30,7 @@
             <div class="mb-3">
                 <label for="message" class="form-label">Write a message</label>
                 <textarea name="message" id="message" class="form-control" cols="30" placeholder="Type here.." rows="4"></textarea>
-                @error('subject')
+                @error('message')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
