@@ -64,7 +64,7 @@ class CustomerController extends Controller
         $ticket = new Ticket();
         $ticket->customer_id = Auth::guard('customer')->user()->id;
         $ticket->subject = $request->subject;
-        $ticket->open_date = date('Y-m-d');
+        $ticket->open_date = date('d F, Y | h:i:sA');
         $ticket->status = 1;
         $ticket->save();
 
@@ -108,6 +108,7 @@ class CustomerController extends Controller
 
     public function close_customer_ticket($ticket_id){
         $ticket = Ticket::find($ticket_id);
+        $ticket->end_date = date('d F, Y | h:i:sA');
         $ticket->status = 2; // 1 for opened 2 for close
         $ticket->save();
         return redirect()->route('customer.dashboard');

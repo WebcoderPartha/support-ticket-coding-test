@@ -16,15 +16,15 @@
         <div class="nav_menu py-4" style="width: 200px; background: lightgray; float:left;">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('customer.dashboard') }}">Dashboard</a>
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('customer.logout') }}">Logout</a>
+                    <a class="nav-link" href="{{ route('admin.logout') }}">Logout</a>
                 </li>
             </ul>
         </div>
-        <div class="main_content px-4" style="float:left; width: 800px;">
+        <div class="main_content px-4" style="float:left; width: 1040px;">
             @yield('content')
         </div>
     </div>

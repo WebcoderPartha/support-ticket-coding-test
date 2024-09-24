@@ -20,15 +20,17 @@
                 @if(empty($ticket_detail->admin))
                 <div style="border: 1px solid #ddd; border-radius: 4px" class="py-1 px-4 mb-2">
                     <div class="text-end">
-                        <h6>{{ $ticket_detail->customer->name }}</h6>
+                        <h6 class="m-0">{{ $ticket_detail->customer->name }}</h6>
                         <p class="m-0">{{ $ticket_detail->message }}</p>
+                        <p class="m-0" style="font-size: 12px">{{ $ticket_detail->created_at->diffForHumans() }}</p>
                     </div>
                 </div>
                 @else
                 <div style="border: 1px solid #ddd; border-radius: 4px" class="py-1 px-4 mb-2">
                     <div class="text-start">
-                        <h6>{{ $ticket_detail->admin->name }}</h6>
+                        <h6 class="m-0 text-info">{{ $ticket_detail->admin->name }}</h6>
                         <p class="m-0">{{ $ticket_detail->message }}</p>
+                        <p class="m-0" style="font-size: 12px">{{ $ticket_detail->created_at->diffForHumans() }}</p>
                     </div>
                 </div>
                 @endif

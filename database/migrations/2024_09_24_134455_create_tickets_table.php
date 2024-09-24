@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('customer_id');
             $table->string('subject');
-            $table->date('open_date');
-            $table->date('end_date')->nullable();
+            $table->string('open_date');
+            $table->string('end_date')->nullable();
             $table->integer('status')->comment('1=active, 2=Inactive');
             $table->timestamps();
         });
