@@ -19,7 +19,7 @@
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
             @error('password')

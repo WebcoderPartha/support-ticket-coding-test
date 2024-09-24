@@ -33,6 +33,7 @@
                 </div>
                 @endif
             @endforeach
+            @if($ticket->status == 1)
             <div class="mb-3">
                 <label for="message" class="form-label">Reply</label>
                 <textarea name="message" id="message" class="form-control" cols="30" placeholder="Type here.." rows="4"></textarea>
@@ -40,7 +41,14 @@
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Reply</button>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Reply</button>
+                <a href="{{ route('customer.ticket.close', $ticket->id) }}" style="text-decoration: none" class="text-end bg-danger py-1 text-white rounded px-2">Solved</a>
+            </div>
+            @else
+                <p style="background: gainsboro" class="py-2 px-4">Your issue has been solved. If you need more support then Create a Ticket. <a href="{{ route('customer.create_ticket') }}">Click Here</a></p>
+            @endif
         </form>
+
     </div>
 @endsection

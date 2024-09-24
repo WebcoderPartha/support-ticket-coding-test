@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,14 @@ Route::controller(CustomerController::class)->group(function (){
    Route::post('/ticket/store', 'open_ticket')->name('customer.open_ticket');
    Route::get('/ticket/{ticket_id}/view', 'customer_ticket_view')->name('customer.ticket.view');
    Route::post('/ticket/{ticket_id}/reply', 'customer_reply_ticket')->name('customer.ticket.reply');
+   Route::get('/ticket/{ticket_id}/close', 'close_customer_ticket')->name('customer.ticket.close');
+   Route::get('/logout', 'customer_logout')->name('customer.logout');
+});
+
+Route::controller(AdminController::class)->prefix('admin')->group(function (){
+    Route::get('/', 'admin_login')->name('admin.login');
+    Route::post('/', 'admin_login_attempt')->name('admin.login.attempt');
+
 });
 
 

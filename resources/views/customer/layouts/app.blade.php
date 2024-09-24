@@ -10,6 +10,9 @@
 
     <div class="container py-4">
         <div>
+            <div class="bg-success text-center py-2 text-white">
+                <h4>Customer Panel</h4>
+            </div>
             <div class="nav_menu py-4" style="width: 200px; background: lightgray; float:left;">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -18,7 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customer.create_ticket') }}">Create Ticket</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('customer.logout') }}">Logout</a>
+                    </li>
                 </ul>
             </div>
             <div class="main_content px-4" style="float:left; width: 800px;">

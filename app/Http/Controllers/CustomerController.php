@@ -106,8 +106,16 @@ class CustomerController extends Controller
 
     }
 
+    public function close_customer_ticket($ticket_id){
+        $ticket = Ticket::find($ticket_id);
+        $ticket->status = 2; // 1 for opened 2 for close
+        $ticket->save();
+        return redirect()->route('customer.dashboard');
+    }
 
-
-
+    public function customer_logout(){
+        Auth::guard('customer')->logout();
+        return redirect()->route('customer.login');
+    }
 
 }
