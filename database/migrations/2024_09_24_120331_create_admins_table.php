@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('phone');
+            $table->integer('is_active')->comment('1=Active, 2=Inactive');
             $table->timestamps();
         });
     }
