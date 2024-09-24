@@ -21,7 +21,7 @@
 
                 </ul>
             </div>
-            <div class="main_content px-4" style="float:left;">
+            <div class="main_content px-4" style="float:left; width: 800px;">
                 @yield('content')
             </div>
         </div>

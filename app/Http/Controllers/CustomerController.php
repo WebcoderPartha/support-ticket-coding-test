@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TicketDetail;
 
 class CustomerController extends Controller
 {
@@ -46,5 +48,36 @@ class CustomerController extends Controller
     public function create_ticket(){
         return view('customer.create_ticket');
     }
+
+    public function open_ticket(Request $request){
+
+        $validate = $request->validate([
+            'subject' => 'required',
+            'message' => 'required'
+        ],[
+            'subject.required' => 'Subject is required!',
+            'message.required' => 'Message is required!'
+        ]);
+
+        // Create a Ticket
+        $ticket = new Ticket();
+        $ticket->customer_id = Auth::guard('customer')->user()->id;
+        $ticket->subject = $request->subject;
+        $ticket->open_date = date('Y-m-d');
+        $ticket->status = 1;
+        $ticket->save();
+
+        // Ticket Detail
+        $ticket_detail = new TicketDetail();
+        $ticket_detail->ticket_id = $ticket->id; // ticket id
+        $ticket_detail->customer_id = Auth::guard('customer')->user()->id;
+        $ticket_detail->message = $request->message;
+        $ticket_detail->save();
+
+        return redirect()->route('customer.dashboard');
+
+    }
+
+    
 
 }

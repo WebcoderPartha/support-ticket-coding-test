@@ -14,6 +14,7 @@ Route::controller(CustomerController::class)->group(function (){
    Route::post('/', 'customer_login_attempt')->name('customer.login.attempt');
    Route::get('/dashboard', 'customer_dashboard')->name('customer.dashboard');
    Route::get('/ticket/create/', 'create_ticket')->name('customer.create_ticket');
+   Route::post('/ticket/store', 'open_ticket')->name('customer.open_ticket');
 });
 
 
