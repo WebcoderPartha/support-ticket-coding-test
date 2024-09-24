@@ -17,8 +17,8 @@ class CreateAdminSeeder extends Seeder
         $admin = Admin::create([
             'name' => 'Net Coden Support',
             'email' => 'admin@gmail.com',
-            'password' => 'admin@gmail.com',
-            'phone' => Hash::make('0170000000'),
+            'password' => Hash::make('admin@gmail.com'),
+            'phone' => '0170000000',
             'is_active' => 1,
         ]);
 

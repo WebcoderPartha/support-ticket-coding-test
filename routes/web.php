@@ -25,6 +25,7 @@ Route::controller(CustomerController::class)->group(function (){
 Route::controller(AdminController::class)->prefix('admin')->group(function (){
     Route::get('/', 'admin_login')->name('admin.login');
     Route::post('/', 'admin_login_attempt')->name('admin.login.attempt');
+    Route::get('/dashboard', 'admin_dashboard')->name('admin.dashboard');
 
 });
 
