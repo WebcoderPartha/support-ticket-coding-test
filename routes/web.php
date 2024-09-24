@@ -11,6 +11,8 @@ use App\Http\Controllers\CustomerController;
 
 Route::controller(CustomerController::class)->group(function (){
    Route::get('/', 'customer_login')->name('customer.login');
+   Route::post('/', 'customer_login_attempt')->name('customer.login.attempt');
+   Route::get('/', 'customer_dashboard')->name('customer.dashboard');
 });
 
 

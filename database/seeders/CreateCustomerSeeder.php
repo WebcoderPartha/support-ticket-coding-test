@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Customer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class CreateCustomerSeeder extends Seeder
 {
@@ -13,12 +14,12 @@ class CreateCustomerSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Admin::create([
-           'name' => 'Net Coden Support',
-           'email' => 'admin@gmail.com',
-           'password' => 'admin@gmail.com',
-           'phone' => '0170000000',
-           'is_active' => 1,
+        $customer = Customer::create([
+            'name' => 'Parthadeb Mondal',
+            'email' => 'parthadev76@gmail.com',
+            'password' => Hash::make('parthadev76@gmail.com'),
+            'phone' => '01710147887',
+            'is_active' => 1,
         ]);
     }
 }

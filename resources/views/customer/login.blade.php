@@ -9,18 +9,19 @@
 <body>
 
 <div class="container vh-100 d-flex justify-content-center align-items-center">
-    <form class="border px-4 py-4 rounded" style="width: 400px">
+    <form method="POST" action="{{ route('customer.login.attempt') }}" class="border px-4 py-4 rounded" style="width: 400px">
+        @csrf @method('POST')
         <h2 class="text-center h4 mb-2">Customer Login</h2>
         <div class="form-group">
             <label for="email">Email or Phone</label>
-            <input type="text" class="form-control" id="email" placeholder="Enter email or password">
+            <input type="text" class="form-control" id="email" name="email_phone" placeholder="Enter email or password">
             @error('email_phone')
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
             @error('password')
             <small class="text-danger">{{ $message }}</small>
             @enderror
