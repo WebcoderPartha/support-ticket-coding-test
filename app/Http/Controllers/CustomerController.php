@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CreateCustomerTicket;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TicketDetail;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -74,6 +76,14 @@ class CustomerController extends Controller
         $ticket_detail->customer_id = Auth::guard('customer')->user()->id;
         $ticket_detail->message = $request->message;
         $ticket_detail->save();
+
+
+        $data['id'] = $ticket->id;
+        $data['open_date'] = $ticket->open_date;
+        $data['customer_name'] = Auth::guard('customer')->user()->name;
+        $data['subject'] = $ticket->subject;
+        $data['message'] = $request->message;
+        Mail::to('admin@gmail.com')->send(new CreateCustomerTicket($data));
 
         return redirect()->route('customer.dashboard');
 
