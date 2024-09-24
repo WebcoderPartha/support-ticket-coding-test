@@ -77,7 +77,7 @@ class CustomerController extends Controller
         $ticket_detail->message = $request->message;
         $ticket_detail->save();
 
-
+        // Mail Send to Admin
         $data['id'] = $ticket->id;
         $data['open_date'] = $ticket->open_date;
         $data['customer_name'] = Auth::guard('customer')->user()->name;

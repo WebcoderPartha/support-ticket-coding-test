@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminCloseTicket;
 use App\Models\Ticket;
 use App\Models\TicketDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -76,10 +78,14 @@ class AdminController extends Controller
     }
 
     public function admin_ticket_close($ticket_id){
-        $ticket = Ticket::find($ticket_id);
+        $ticket = Ticket::with('customer')->find($ticket_id);
         $ticket->end_date = date('d F, Y | h:i:sA');
         $ticket->status = 2; // 1 for opened 2 for close
         $ticket->save();
+
+        // Mail send to customer
+        Mail::to($ticket->customer->email)->send(new AdminCloseTicket($ticket));
+
         return redirect()->route('admin.dashboard');
     }
 
